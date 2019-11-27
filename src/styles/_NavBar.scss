@@ -2,11 +2,14 @@
 
 .NavBar {
 
-    height: 60px;
-    padding: 12px 24px;
+    height: $header-height;
+    padding: ($header-height / 5) 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 1;
+    background: white;
 
     i {
         font-size: 34px;
