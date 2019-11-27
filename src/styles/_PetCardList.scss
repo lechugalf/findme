@@ -1,0 +1,10 @@
+@import './base.scss';
+
+$padding: 14px;
+
+.PetCardList {
+    display: grid;
+    grid-gap: $padding;
+    padding: $padding;
+    align-content: flex-start;
+}

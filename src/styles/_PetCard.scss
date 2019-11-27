@@ -1,0 +1,89 @@
+@import './base.scss';
+@import './PetCardList';
+
+.PetCard {
+
+    $height: 120px;
+    //$padding: 20px;
+
+    * { margin: 0px }
+
+    min-width: $height * 2.2;
+    height: $height;
+    padding: $padding;
+    display: flex;
+    
+    @include shadowRadius($radius);
+    background-color: $bkcolor;
+
+    figure {
+        width: $height;
+        height: $height;
+        margin: 0px;
+        
+        img {
+            object-fit: cover;
+            width: inherit;
+            height: inherit;
+            border-radius: $radius / 2;
+        }
+
+        .filter {
+            @include imgGradientFilter(-127px, $radius / 2, $imgGradientFilterBlack);
+        }
+
+        span {
+            width: 40px;
+            position: relative;
+            left: 8px;
+            top: -157px;
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            z-index: 1;
+        }
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        padding-left: $padding;
+        justify-content: space-around;
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            height: $height / 2;
+        }
+
+        .petName {
+            display: flex;
+            align-items: center;
+        }
+
+        .petDate {
+            font-weight: bold;
+            color: $secundary;
+        }
+
+        article p {
+            font-size: 13px;
+            height: $height / 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            padding-left: $padding / 2;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+    }
+
+}

@@ -1,0 +1,65 @@
+{
+    "pets": [
+        {
+            "id": "049b7493-d5d2-4d4c-bb82-764ce60b7941",
+            "owner": "b8313ed8-b33a-4ebf-abb1-583533b4d0af",
+            "animal": "dog",
+            "breed": "chihuahua",
+            "name": "Coby",
+            "color": "cafe, naranja, blanco",
+            "description": "Se perdió por la noche, cojea de la patita derecha de atras, tiene un collar azul sin placa, su pecho es blanco.",
+            "reward": 5000,
+            "location": {
+                "lat": 19.250829,
+                "lng": -103.7228008
+            },
+            "photos": [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZZLZC3eACsAlxWm5eYHFl8bRm73HCt0v90qfsx2WyciHvlywF",
+                "http://www.publispain.com/blogs/mascotas/uploads/chihuahua5.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSYtysLjFxfQlQcR7boeccEyFchE96f5Tdz-6fX-E9r0vEwZWR2",
+                "https://i.pinimg.com/originals/97/25/56/972556b2ee1a5c4a95c85f9616fe7e0b.jpg"
+            ],
+            "dateOfLost": "2019-11-19T00:36:50.615Z",
+            "status": "lost"
+        },
+        {
+            "id": "b043ac26-7d37-4154-bc38-9982fc0e4a59",
+            "owner": "2b6b5ec6-03e9-4420-8587-4bf5d6671431",
+            "animal": "cat",
+            "breed": "jaspeado",
+            "name": "Juki",
+            "color": "gris, blanco",
+            "description": "Se perdió hoy a noche en la Esmeralda es un macho de 8 meses y responde a yuki cualquier cosa me mandan mensaje gracias!",
+            "reward": 12000,
+            "location": {
+                "lat": 19.250138,
+                "lng": -103.710423
+            },
+            "photos": [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSint0_y2UD76b6AtvHY1ALd4wgtzCSqNZokhSIuHNRKHJ2nri_",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-5lmRojrQglvFxh2mZKGBd4at7rcyDXljA15bEclcHsJq6NuE",
+                "https://ichef.bbci.co.uk/wwfeatures/live/976_549/images/live/p0/7r/yy/p07ryyyj.jpg"
+            ],
+            "dateOfLost": "2019-11-13T00:35:30.013Z",
+            "status": "lost"
+        }
+    ],
+    "persons": [
+        {
+            "id": "b8313ed8-b33a-4ebf-abb1-583533b4d0af",
+            "fullName": "Fernanda Morales",
+            "phone": "3134527933",
+            "email": "fmorales@gmail.com",
+            "profilePhoto": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT4Va8vtDPrPLHCCejoB0MpbCVRm__Jvn0hwq8GHMALuM741SXj",
+            "password": "coby123"
+        },
+        {
+            "id": "2b6b5ec6-03e9-4420-8587-4bf5d6671431",
+            "fullName": "David Flores",
+            "phone": "3126598871",
+            "email": "david344@gmail.com",
+            "profilePhoto": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShg79KfTiOaeFxRqZccWzsYFiXP0cXTGT1_978LRq6BLvffv7",
+            "password": "noiji3o4jno5"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+@import './colors.scss';
+@import './mixins.scss';
+@import './fonts.scss';
+
+$radius: 10px;
+
+body { 
+    margin: 0px;
+    font-family: 'Poppins';
+}
+
+.success {
+    background-color: $secundary2 !important;
+    color: white;
+    font-weight: bold;
+}
+
+

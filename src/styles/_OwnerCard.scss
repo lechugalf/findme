@@ -1,0 +1,39 @@
+@import './base.scss';
+
+.OwnerCard {
+
+    $height: 60px;
+    $padding: 20px;
+
+    min-width: ($height * 3) + ($padding * 2);
+    height: $height;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding;
+    border-radius: $radius;
+
+    background-color: $bkActive;
+    color: $secundary2;
+
+    img {
+        width: $height;
+        height: $height;
+        border-radius: 10000px;
+    }
+
+    h1 {
+        padding-left: $padding;
+        padding-right: $padding;
+        font-size: 24px;
+    }
+
+    i {
+        padding: $padding;
+        font-size: 28px;
+    }
+
+    i:hover {
+        color: $secundary2Active;
+    }
+}
