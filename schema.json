@@ -1,0 +1,67 @@
+{
+  "persons" : { 
+    "-3edyhs8sb8313ed83ed": {
+      "email" : "fmorales@gmail.com",
+      "fullName" : "Fernanda Morales",
+      "password" : "coby123",
+      "phone" : "3134527933",
+      "profilePhoto" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT4Va8vtDPrPLHCCejoB0MpbCVRm__Jvn0hwq8GHMALuM741SXj"
+    },
+    "-2bKUGH83ed6b53edec6": {
+      "email" : "david344@gmail.com",
+      "fullName" : "David Flores",
+      "password" : "noiji3o4jno5",
+      "phone" : "3126598871",
+      "profilePhoto" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShg79KfTiOaeFxRqZccWzsYFiXP0cXTGT1_978LRq6BLvffv7"
+    }
+  },
+  "pets" : {
+    "-8qmNyhs8s84dKN4dKUG" : {
+      "animal" : "dog",
+      "breed" : "chihuahua",
+      "color" : "cafe, naranja, blanco",
+      "dateOfLost" : "2019-11-19T00:36:50.615Z",
+      "description" : "Se perdió por la noche, cojea de la patita derecha de atras, tiene un collar azul sin placa, su pecho es blanco.",
+      "location" : {
+        "lat" : 19.250829,
+        "lng" : -103.7228008
+      },
+      "name" : "Coby",
+      "owner" : "-3edyhs8sb8313ed83ed",
+      "photos" : [ "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZZLZC3eACsAlxWm5eYHFl8bRm73HCt0v90qfsx2WyciHvlywF", "http://www.publispain.com/blogs/mascotas/uploads/chihuahua5.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSYtysLjFxfQlQcR7boeccEyFchE96f5Tdz-6fX-E9r0vEwZWR2", "https://i.pinimg.com/originals/97/25/56/972556b2ee1a5c4a95c85f9616fe7e0b.jpg" ],
+      "reward" : 5000,
+      "status" : "lost"
+    },
+    "-Nyhs84dKNyhs84dKUGH" : {
+      "animal" : "cat",
+      "breed" : "jaspeado",
+      "color" : "gris, blanco",
+      "dateOfLost" : "2019-11-13T00:35:30.013Z",
+      "description" : "Se perdió hoy a noche en la Esmeralda es un macho de 8 meses y responde a yuki cualquier cosa me mandan mensaje gracias!",
+      "location" : {
+        "lat" : 19.250138,
+        "lng" : -103.710423
+      },
+      "name" : "Juki",
+      "owner" : "-2bKUGH83ed6b53edec6",
+      "photos" : [ "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSint0_y2UD76b6AtvHY1ALd4wgtzCSqNZokhSIuHNRKHJ2nri_", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-5lmRojrQglvFxh2mZKGBd4at7rcyDXljA15bEclcHsJq6NuE", "https://ichef.bbci.co.uk/wwfeatures/live/976_549/images/live/p0/7r/yy/p07ryyyj.jpg" ],
+      "reward" : 12000,
+      "status" : "lost"
+    },
+    "-Lu8qmNyhs84dKUGH81O" : {
+      "animal" : "gato",
+      "breed" : "Salchicha",
+      "color" : "Negro",
+      "dateOfLost" : "2019-11-20T17:27:50.476Z",
+      "description" : "powkpf psodkfp psopop psof",
+      "name" : "Osvaldo",
+      "owner" : 1,
+      "photos" : [ "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQRBYweXz5G8qcebTIYuGZbYK3KAh8qmcl4CE_BsL3j_JBYXikE" ],
+      "reward" : "72",
+      "selectLoc" : {
+        "lat" : 19.243533780089663,
+        "lng" : -103.69582306577966
+      }
+    }
+  }
+}

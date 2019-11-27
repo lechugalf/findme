@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 
-
 import NavBar from './components/NavBar';
+import HomeView from './components/HomeView';
 
 import './styles/base.scss';
 
@@ -28,6 +29,25 @@ function App(props) {
   return (
     <div className="App">
       <NavBar />
+      <HomeView pets={pets}/>
+      <BrowserRouter>
+        <Redirect
+          from='/'
+          to='/home'
+        />
+        <Switch>
+          <Route
+            path='/home'
+            exact 
+          />
+          <Route
+            path='/add'
+          />
+          <Route
+            path='/update'
+          />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

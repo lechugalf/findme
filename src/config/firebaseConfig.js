@@ -1,11 +1,11 @@
 const FirebaseConfig = {
-    apiKey: "AIzaSyALb-vilgE8nLc71P0ciSy9vd5zayCLl0I",
-    authDomain: "findme-b0e09.firebaseapp.com",
-    databaseURL: "https://findme-b0e09.firebaseio.com",
-    projectId: "findme-b0e09",
-    storageBucket: "findme-b0e09.appspot.com",
-    messagingSenderId: "758883226433",
-    appId: "1:758883226433:web:8b377d9825b888e41dc7c0"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 };
 
 export default FirebaseConfig;
