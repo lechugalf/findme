@@ -4,10 +4,12 @@ import '../styles/_HomeView.scss';
 import PetCardList from './PetCardList';
 import PetPigeonMap from './PetPigeonMap';
 
-function HomeView ({pets}) {
+function HomeView ({pets, onClickMap}) {
     return (
         <div className="HomeView">
-            <PetPigeonMap pets={pets} />
+            <div className="map">
+                <PetPigeonMap pets={pets} onClickMap={onClickMap} />
+            </div>
             <PetCardList pets={pets} />
         </div>
     );

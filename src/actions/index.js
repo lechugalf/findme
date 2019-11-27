@@ -1,8 +1,10 @@
 import { petsRef, personsRef } from '../config/firebase';
 import { FETCH_PETS, FETCH_PERSONS } from './types';
 
-export const addPet = newPet => async dispatch => {
-    petsRef.push(newPet);
+export const addPet = (newPet, callback) => async dispatch => {
+    petsRef.push(newPet)
+        .then((val) => callback(val, null))
+        .catch((err) => callback(null, err));
 }
 
 export const delPet = petId => async dispatch => {
