@@ -1,21 +1,14 @@
 @import './base.scss';
 
 .PetForm {
+    width: 380px;
     padding: 20px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.PetForm .map {
-    width: 45%;
-    height: calc(100vh - #{$header-height});
 }
 
 .PetForm form {
 
     display: flex;
     flex-direction: column;
-    padding: 0px 22px;
 
     p {
         margin: 0px;
@@ -38,7 +31,7 @@
         display: flex;
         width: inherit;
         justify-content: space-evenly;
-        padding: 0px 22px 22px 22px;
+        padding: 22px;
 
         span {
             border: 2px solid #CACACA;
@@ -62,25 +55,3 @@
         }
     }
 }
-
-@media screen and (max-width: 800px) {
-    .PetForm {
-        flex-direction: column-reverse;
-    }
-
-    .PetForm form {
-        padding-bottom: 20px;
-    }
-
-    .PetForm .map {
-        width: 100%;
-        height: 60vw;
-    }
-  }
-  
-  @media screen and (min-width: 800px) {
-    .PetForm {
-
-    }
-
-  }

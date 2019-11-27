@@ -1,37 +1,21 @@
 import React from 'react'
-import { withRouter } from "react-router-dom";
-
 import '../styles/_NavBar.scss';
+
 const logo = 'corgi.jpg';
 
-function NavBar({ history }) {
-
-  let rightButton = null
-
-  if (history.location.pathname === '/home')
-    rightButton = <i
-      className="material-icons"
-      onClick={() => { history.push('/add') }}
-    > add </i>;
-
-  if (history.location.pathname === '/add')
-    rightButton = <i
-      className="material-icons"
-      onClick={() => { history.push('/home') }}
-    > close </i>;
+function NavBar() {
 
   return (
     <nav className="NavBar">
       <i className="material-icons">menu</i>
-      <span onClick={() => { history.push('/home') }}>
+      <span>
         <p>FindMe</p>
-        <img alt='logo' src={logo} />
-
+        <img alt='logo' src={logo}/>
       </span>
-      {rightButton}
+      <i className="material-icons">my_location</i>
     </nav>
 
   )
 }
 
-export default withRouter(NavBar);
+export default NavBar;

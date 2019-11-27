@@ -3,7 +3,7 @@ import Map from 'pigeon-maps';
 import Overlay from 'pigeon-overlay';
 import '../styles/_PetPigeonMap.scss';
 
-function PetPigeonMap({ pets, onClickMap, location }) {
+function PetPigeonMap({ pets, onClickPet, location }) {
 
   const [currentLocation, setLocation] = useState(location || {
     lat: 19.246,
@@ -43,12 +43,14 @@ function PetPigeonMap({ pets, onClickMap, location }) {
   }
 
   return (
-      <Map className="PetPigeonMap"
+    <div className="PetPigeonMap">
+      <Map
         center={[currentLocation.lat, currentLocation.lng]}
         zoom={14}
-        onClick={onClickMap}
+        onClick={onClickPet}
       >{ markers }
       </Map>
+    </div>
   );
 }
 

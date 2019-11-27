@@ -19,7 +19,7 @@ $padding: 14px;
   .PetCard:last-child {
     margin-bottom: 14px;
   }
-  .HomeView .map {
+  .PetPigeonMap {
     position: absolute;
     bottom: 14%;
   }
@@ -35,7 +35,7 @@ $padding: 14px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 50.13%);
     align-content: end;
   }
-  .HomeView .map {
+  .PetPigeonMap {
     position: absolute;
     right: 25%;
   }
