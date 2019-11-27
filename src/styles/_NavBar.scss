@@ -1,0 +1,32 @@
+@import './base.scss';
+
+.NavBar {
+
+    height: 60px;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    i {
+        font-size: 34px;
+    }
+
+    span {
+
+        display: flex;
+        align-items: center;
+
+        p {
+            padding: 0px;
+            margin: 0px;
+            font-weight: 900;
+            font-size: 26px;
+        }
+
+        img {
+            width: 50px;
+        }
+    }
+
+}
