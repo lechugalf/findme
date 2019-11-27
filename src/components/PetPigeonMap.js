@@ -11,10 +11,13 @@ function PetPigeonMap({ pets, onClickPet, location }) {
   });
 
   const [petSelected, setPetSelected] = useState(-1);
-  let markers = null;
 
-  if (Array.isArray(pets)) {
-    markers = pets.map((pet, index) => {
+  let markers
+  if (pets === null || Object.entries(pets).length === 0 && pets.constructor === Object) { 
+    markers = null;
+
+  } else {
+    markers = Object.values(pets).map((pet, index) => {
       return (
         <Overlay
           className={index === petSelected ? 'marker active' : 'marker'}
@@ -40,14 +43,14 @@ function PetPigeonMap({ pets, onClickPet, location }) {
   }
 
   return (
-    <Map
-      className="PetPigeonMap"
-      center={[currentLocation.lat, currentLocation.lng]}
-      zoom={14}
-      height={700}
-      onClick={onClickPet}
-    >{ markers }
-    </Map>
+    <div className="PetPigeonMap">
+      <Map
+        center={[currentLocation.lat, currentLocation.lng]}
+        zoom={14}
+        onClick={onClickPet}
+      >{ markers }
+      </Map>
+    </div>
   );
 }
 

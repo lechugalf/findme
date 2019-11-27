@@ -2,17 +2,19 @@ import React from 'react';
 import '../styles/_PetCardList.scss';
 
 import PetCard from './PetCard';
+import Loader from './Loader';
 
 function PetCardList({ pets }) {
 
   let cards
-  if (Object.entries(pets).length === 0 && pets.constructor === Object) {
-    cards='loading'
+  //if (Object.entries(pets).length === 0 && pets.constructor === Object) {
+  if (pets === null || Object.entries(pets).length === 0 && pets.constructor === Object) {
+    cards = <Loader />;
   } else {
-    cards = Object.entries(pets).map((pet, index) =>
+    cards = Object.values(pets).map((pet, index) => 
       <PetCard
         key={index}
-        pet={pet[1]}
+        pet={pet}
       />
     )
   }

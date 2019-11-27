@@ -1,9 +1,11 @@
 @import './base.scss';
 
 $markerSize: 80px;
+$padding: 12px;
 
 .PetPigeonMap {
-    height: 200px;
+    width: 100%;
+    height: calc(100vh - #{$header-height} - 24px);
 }
 
 .marker {
