@@ -45,7 +45,7 @@ function PetForm({ selectLoc, addPet, onClickMap }) {
         setReward('');
         swal("¡Nueva Mascota!", "Nueva mascota agregada a la lista de busqueda", "success")
         .then(() => {
-          window.location.href='/home';
+          window.location.href='/';
         })
         
       } else {
