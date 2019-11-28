@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import * as actions from './actions';
 
 import NavBar from './components/NavBar';
 import HomeView from './components/HomeView';
 import PetForm from './components/PetForm';
+import PetView from './components/PetView';
 
 import './styles/base.scss';
 
@@ -36,19 +37,19 @@ function App(props) {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <NavBar />
-        <Redirect
-          from='/'
-          to='/home'
-        />
         <Switch>
-          <Route
-            path='/home'
+          <Route 
+            path='/'
             exact
-            render={() => <HomeView pets={pets} onClickMap={onClickMap} />}
+            render={()=> <HomeView pets={pets} onClickMap={onClickMap} />}
           />
           <Route
+            path='/pet/:id'
+            render={()=> <PetView pets={pets}/>}
+          />
+          <Route 
             path='/add'
             render={() => 
               <PetForm 
@@ -58,11 +59,8 @@ function App(props) {
               />
             }
           />
-          <Route
-            path='/update'
-          />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

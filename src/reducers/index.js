@@ -5,5 +5,5 @@ import persons from './personReducer';
 
 export default combineReducers({
     pets,
-    persons
+    persons,
 });

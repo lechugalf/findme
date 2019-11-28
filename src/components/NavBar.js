@@ -8,7 +8,7 @@ function NavBar({ history }) {
 
   let rightButton = null
 
-  if (history.location.pathname === '/home')
+  if (history.location.pathname === '/')
     rightButton = <i
       className="material-icons"
       onClick={() => { history.push('/add') }}
@@ -17,13 +17,19 @@ function NavBar({ history }) {
   if (history.location.pathname === '/add')
     rightButton = <i
       className="material-icons"
-      onClick={() => { history.push('/home') }}
+      onClick={() => { history.push('/') }}
     > close </i>;
+
+    if (history.location.pathname.includes('/pet/'))
+    rightButton = <i
+      className="material-icons"
+      onClick={() => { history.push('/') }}
+    > share </i>;
 
   return (
     <nav className="NavBar">
       <i className="material-icons">menu</i>
-      <span onClick={() => { history.push('/home') }}>
+      <span onClick={() => { history.push('/') }}>
         <p>FindMe</p>
         <img alt='logo' src={logo} />
 
