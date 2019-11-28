@@ -6,6 +6,7 @@ import * as actions from './actions';
 import NavBar from './components/NavBar';
 import HomeView from './components/HomeView';
 import PetForm from './components/PetForm';
+import PetView from './components/PetView';
 
 import './styles/base.scss';
 
@@ -38,29 +39,11 @@ function App(props) {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <Redirect
-          from='/'
-          to='/home'
-        />
         <Switch>
-          <Route
-            path='/home'
-            exact
-            render={() => <HomeView pets={pets} onClickMap={onClickMap} />}
-          />
-          <Route
-            path='/add'
-            render={() => 
-              <PetForm 
-                selectLoc={selLocation}
-                action={'add'}
-                onClickMap={onClickMap} 
-              />
-            }
-          />
-          <Route
-            path='/update'
-          />
+          <Route exact path='/' component={HomeView} />
+          <Route path='/pet/:id' component={PetView} />
+          <Route path='/add' component={PetForm} />
+          <Route path='/edit' component={PetForm} />
         </Switch>
       </BrowserRouter>
     </div>

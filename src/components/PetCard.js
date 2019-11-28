@@ -1,32 +1,42 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import moment from 'moment';
 import '../styles/_PetCard.scss';
+const logo = 'corgi.jpg';
 
-function PetCard({ pet }) {
+function PetCard({ id, pet }) {
+
+  let history = useHistory();
+
   return (
-    <div className="PetCard">
+    <div className="PetCard" onClick={() => history.push('/pet/' + id)}>
       <figure>
-        <img src={pet.photos[0]} alt=""></img>
+        <img src={pet.photos[0] || logo} alt=""></img>
         <div className="filter"></div>
-        <span>
-          <i className="material-icons">collections</i>
-          {pet.photos.length}
-        </span>
+        {
+          pet.photos.length &&
+          <span>
+            <i className="material-icons">collections</i>
+            {pet.photos.length}
+          </span>
+        }
       </figure>
       <section>
         <header>
           <div>
-            <div className="petName">
-              <i className="material-icons">pets</i>
-              <h1>{pet.name}</h1>
-            </div>
-            <h2>{pet.breed}
-            </h2>
+            {
+              pet.name &&
+              <div className="petName">
+                <i className="material-icons">pets</i>
+                <h1>{pet.name}</h1>
+              </div>
+            }
+            {pet.breed && <h2>{pet.breed}</h2>}
           </div>
-          <div className="petDate">{moment(pet.dateOfLost).fromNow()}</div>
+          {pet.dateOfLost && <div className="petDate">{moment(pet.dateOfLost).fromNow()}</div>}
         </header>
         <article>
-          <p>{pet.description}</p>
+          {pet.description && <p>{pet.description}</p>}
         </article>
       </section>
     </div>

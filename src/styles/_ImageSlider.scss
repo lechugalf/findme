@@ -1,74 +1,85 @@
-@import './base.scss';
+@import "./base.scss";
 
 .ImageSlider {
+  $width: 100%;
+  $insidePadding: 20px;
 
-    $width: 500px;
-    $height: 500px;
-    $insidePadding: 20px;
+  //width: $width;
+  //display: grid;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: inherit;
+  margin: 0px;
 
-    width: $width;
-    height: $height;
-    display: grid;
+  img {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+    border-radius: $radius;
+    z-index: 0;
+  }
 
-    img {
-        width: inherit;
-        height: inherit;
-        object-fit: cover;
-        border-radius: $radius;
-        z-index: 0;
+  .slideIndicator {
+    width: 96%;
+    height: 10px;
+    z-index: 3;
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    padding: 0% 2%;
+    display: flex;
+
+    .indicator {
+      margin: 2px;
+      flex-grow: 1;
+      border-radius: 10px;
+      background-color: #c2c2c2c5;
     }
 
-    .slideIndicator {
-        width: $width - ($insidePadding * 2);
-        height: 10px;
-        z-index: 3;
-        position: relative;
-        bottom: ($height * 3) + $insidePadding + ($insidePadding / 4);
-        left: $insidePadding;
-        display: flex;
-
-        .indicator {
-            margin: 2px;
-            flex-grow: 1;
-            border-radius: 10px;
-            background-color: #c2c2c2c5;
-        }
-
-        .active {
-            background-color: white;
-        }
+    .active {
+      background-color: white;
     }
+  }
 
-    .next {
-        width: $width / 2;
-        height: $height;
-        position: relative;
-        bottom: $height;
-        left: 50%;
-        z-index: 2;
-    }
+  .next {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+  }
 
-    .back {
-        width: $width / 2;
-        height: $height;
-        position: relative;
-        bottom: $height * 2;
-        z-index: 2;
-    }
+  .back {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
 
-    .numImgs {
-        width: 40px;
-        position: relative;
-        bottom: ($height * 3) + $insidePadding + ($insidePadding * 3);
-        left: $insidePadding;
-        display: flex;
-        justify-content: space-between;
-        color: white;
-        z-index: 2;
-    }
+  .numImgs {
+    width: 40px;
+    position: absolute;
+    bottom: 6px;
+    left: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 2;
+  }
 
-    .filter {
-        @include imgGradientFilter(-$height * 3, $radius, $imgGradientFilterBlack);
-        z-index: 1;
-    }
+  .filter {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: $radius;
+    background-color: $imgGradientFilterBlack;
+    z-index: 1;
+  }
 }

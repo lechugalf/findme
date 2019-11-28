@@ -1,10 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import '../styles/_HomeView.scss';
 
 import PetCardList from './PetCardList';
 import PetPigeonMap from './PetPigeonMap';
 
-function HomeView ({pets, onClickMap}) {
+function HomeView ({ onClickMap }) {
+    
+    const pets = useSelector(state => state.pets);
+
     return (
         <div className="HomeView">
             <div className="map">
