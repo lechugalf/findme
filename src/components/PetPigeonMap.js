@@ -3,7 +3,7 @@ import Map from 'pigeon-maps';
 import Overlay from 'pigeon-overlay';
 import '../styles/_PetPigeonMap.scss';
 
-function PetPigeonMap({ pets, onClickMap, location }) {
+function PetPigeonMap({ pets, onClickMap, location, active }) {
 
   const [currentLocation, setLocation] = useState(location || {
     lat: 19.246,
@@ -20,7 +20,7 @@ function PetPigeonMap({ pets, onClickMap, location }) {
     markers = Object.values(pets).map((pet, index) => {
       return (
         <Overlay
-          className={index === petSelected ? 'marker active' : 'marker'}
+          className={index === petSelected || active ? 'marker active' : 'marker'}
           key={index}
           anchor={[pet.location.lat, pet.location.lng]}
           offset={[0, 0]}

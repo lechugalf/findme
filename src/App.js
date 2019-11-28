@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 
@@ -37,30 +37,15 @@ function App(props) {
 
   return (
     <div className="App">
-      <Router>
+      <BrowserRouter>
         <NavBar />
         <Switch>
-          <Route 
-            path='/'
-            exact
-            render={()=> <HomeView pets={pets} onClickMap={onClickMap} />}
-          />
-          <Route
-            path='/pet/:id'
-            render={()=> <PetView pets={pets}/>}
-          />
-          <Route 
-            path='/add'
-            render={() => 
-              <PetForm 
-                selectLoc={selLocation}
-                action={'add'}
-                onClickMap={onClickMap} 
-              />
-            }
-          />
+          <Route exact path='/' component={HomeView} />
+          <Route path='/pet/:id' component={PetView} />
+          <Route path='/add' component={PetForm} />
+          <Route path='/edit' component={PetForm} />
         </Switch>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

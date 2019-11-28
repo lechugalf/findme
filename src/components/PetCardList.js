@@ -6,24 +6,11 @@ import Loader from './Loader';
 
 function PetCardList({ pets }) {
 
-  let cards
-  //if (Object.entries(pets).length === 0 && pets.constructor === Object) {
-  if (pets === null || Object.entries(pets).length === 0 && pets.constructor === Object) {
-    cards = <Loader />;
-  } else {
-    cards = Object.values(pets).map((pet, index) => 
-      <PetCard
-        key={index}
-        pet={pet}
-      />
-    )
-  }
-
-
   return (
     <section className="PetCardList">
       {
-        cards
+        pets && 
+        Object.entries(pets).map((pet, index) => <PetCard key={index} pet={pet[1]} id={pet[0]} />)
       }
     </section>
   );
