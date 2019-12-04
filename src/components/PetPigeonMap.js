@@ -9,7 +9,6 @@ function PetPigeonMap({ pets, onClickMap, location, active }) {
     lat: 19.246,
     lng: -103.726,
   });
-
   const [petSelected, setPetSelected] = useState(-1);
 
   let markers

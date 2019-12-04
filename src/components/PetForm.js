@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux';
 import { addPet } from '../actions';
-import {Redirect} from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
 import '../styles/_PetForm.scss';
 
 import PetPigeonMap from './PetPigeonMap';
 
-function PetForm({ selectLoc, addPet, onClickMap }) {
+function PetForm({ addPet }) {
 
-  const [selectLocation, setSelectLocation] = useState(selectLoc);
+  const history = useHistory();
+  const [selectLocation, setSelectLocation] = useState({ ltn: 0, lng: 0});
   const [animal, setAnimal] = useState('');
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
   const [color, setColor] = useState('');
   const [description, setDescription] = useState('');
   const [reward, setReward] = useState(0);
-
-  //didUpdate
-  useEffect(() => {
-    setSelectLocation(selectLoc);
-  }, [selectLoc])
 
   const handleSubmit = (e) => {
     //photo default
@@ -31,8 +25,8 @@ function PetForm({ selectLoc, addPet, onClickMap }) {
     const owner = 1;
     const photos = ['https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQRBYweXz5G8qcebTIYuGZbYK3KAh8qmcl4CE_BsL3j_JBYXikE'];
     const location = {
-      lat: selectLocation[0],
-      lng: selectLocation[1]
+      lat: selectLocation.ltn,
+      lng: selectLocation.lng
     }
     const newPet = { dateOfLost, owner, animal, name, breed, color, description, reward, photos, location };
     addPet(newPet, (val, err) => {
@@ -44,12 +38,11 @@ function PetForm({ selectLoc, addPet, onClickMap }) {
         setDescription('');
         setReward('');
         swal("¡Nueva Mascota!", "Nueva mascota agregada a la lista de busqueda", "success")
-        .then(() => {
-          window.location.href='/';
-        })
+        .then(() => history.push('/'))
         
       } else {
         console.log(err)
+        swal("¡Nueva Mascota!", "Error al crear tu mascota, intentalo mas tarde", "error")
       }
     });
 
@@ -58,7 +51,7 @@ function PetForm({ selectLoc, addPet, onClickMap }) {
   return (
     <section className="PetForm">
       <div className="map">
-        <PetPigeonMap pets={null} onClickMap={onClickMap} />
+        <PetPigeonMap pets={null} onClickMap={(e) => setSelectLocation(e.latLng) } />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="animalSelector">
@@ -133,4 +126,4 @@ function PetForm({ selectLoc, addPet, onClickMap }) {
   );
 }
 
-export default connect(null, { addPet })(PetForm);
+export default PetForm;
