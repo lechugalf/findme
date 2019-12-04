@@ -7,6 +7,12 @@ export const addPet = (newPet, callback) => async dispatch => {
         .catch((err) => callback(null, err));
 }
 
+export const editPet = (updatedPet, callback) => async dispatch => {
+    petsRef.update(updatedPet)
+        .then((val) => callback(val, null))
+        .catch((err) => callback(null, err));
+}
+
 export const delPet = petId => async dispatch => {
     petsRef.child(petId).remove();
 }

@@ -6,7 +6,7 @@ const logo = 'corgi.jpg';
 
 function PetCard({ id, pet }) {
 
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <div className="PetCard" onClick={() => history.push('/pet/' + id)}>

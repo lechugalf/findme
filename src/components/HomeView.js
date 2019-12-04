@@ -1,22 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import '../styles/_HomeView.scss';
-
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux';
+import * as actions from './../actions';
 import PetCardList from './PetCardList';
 import PetPigeonMap from './PetPigeonMap';
 
-function HomeView ({ onClickMap }) {
+import '../styles/_HomeView.scss';
+
+function HomeView (props) {
     
-    const pets = useSelector(state => state.pets);
+    const [ pets, setPets ] = useState([]);
+
+    useEffect(() => {
+        props.fetchPets();
+    }, [])
+
+    useEffect(() => {
+        setPets(props.pets);
+    }, [props.pets])
 
     return (
         <div className="HomeView">
             <div className="map">
-                <PetPigeonMap pets={pets} onClickMap={onClickMap} />
+                <PetPigeonMap pets={pets} />
             </div>
             <PetCardList pets={pets} />
         </div>
     );
 }
 
-export default HomeView;
+const mapStateToProps = ({ pets }) => {
+  return {
+    pets
+  };
+};
+
+export default connect(mapStateToProps, actions)(HomeView);
