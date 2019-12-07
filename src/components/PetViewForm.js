@@ -1,7 +1,7 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
-import * as actions from './../actions';
-import { connect } from 'react-redux';
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useFirebase, useFirebaseConnect, isLoaded } from 'react-redux-firebase';
 
 import swal from 'sweetalert';
 import '../styles/_PetViewForm.scss';
@@ -12,8 +12,12 @@ import PetPigeonMap from './PetPigeonMap';
 
 function PetViewForm(props) {
 
+  const firebase = useFirebase()
   const history = useHistory();
-
+  const { petId } = useParams()
+  //useFirebaseConnect([{ path: 'pets' }]);
+  //const pets = useSelector(state => state.firebase.data['pets']);
+  
   const {
     values,
     errors,
@@ -21,7 +25,7 @@ function PetViewForm(props) {
     handleSubmit,
     handleDeletePhoto,
     handleChangeLocation
-  } = dataForm(testAction, dataValidation, props.pet || {}, null);
+  } = dataForm(testAction, dataValidation, {}, petId || null, null);
 
   const photoPlaceholder = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYNKK6YMqs1WsqJtg7TJ3wlrDT9t1Tb8DILe3D72KZbpYtUBjz';
   const locationMarker = 'https://i.pinimg.com/originals/f2/57/78/f25778f30e29a96c44c4f72ef645aa63.png';
@@ -41,28 +45,31 @@ function PetViewForm(props) {
     //add pet
     if (props.action === 'add') {
       console.log('add', values);
-      props.addPet(values, (val, err) => {
-        if (val) {
+      firebase.push('pets', values)
+        .then((val) => {
           swal("¡Nueva Mascota!", "Nueva mascota agregada a la lista de busqueda", "success")
-            .then(() => history.push('/'))
-        } else {
-          swal("Hubo problema", "Error al crear tu mascota, intentalo mas tarde", "error")
-        }
-      });
+            .then(() => history.push('/'));
+        })
+        .catch((err) => {
+          swal("Hubo problema", "Error al crear tu mascota, intentalo mas tarde", "error");
+        });
     }
 
     if (props.action === 'edit') {
-      let id = props.petId;
+      let id = petId;
       let updatedPet = { [id]: values }
       console.log('edit', updatedPet);
-      props.editPet(updatedPet, (val, err) => {
-        if (err) {
-          swal("Hubo problema", "Error al modificar tu mascota, intentalo mas tarde", "error")
-        } else {
+
+      firebase.set('pets', updatedPet)
+        .then((val) => {
+          console.log(val);
           swal("¡Guardado!", "cambios guardados con éxito", "success")
-            .then(() => history.push('/'))
-        }
-      });
+            .then(() => history.push('/'));
+        })
+        .catch((err) => {
+          console.log(err);
+          swal("Hubo problema", "Error al modificar tu mascota, intentalo mas tarde", "error");
+        });
     } 
   }
 
@@ -201,13 +208,7 @@ function PetViewForm(props) {
   );
 }
 
-const mapStateToProps = ({ pets }) => {
-  return {
-    pets
-  };
-};
-
-export default connect(mapStateToProps, actions)(PetViewForm);
+export default PetViewForm;
 
 // Based on this tutorial
 // https://github.com/upmostly/custom-react-hooks-form-validation

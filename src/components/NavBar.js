@@ -1,11 +1,15 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import '../styles/_NavBar.scss';
 const logo = 'corgi.jpg';
 
 function NavBar() {
-  let history = useHistory();
+
+  const history = useHistory();
+  const auth = useSelector(state => state.firebase.auth);
+
   let rightButton, leftButton = null;
 
   if (history.location.pathname === '/') {

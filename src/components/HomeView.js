@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux';
-import * as actions from './../actions';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import { useFirebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import PetCardList from './PetCardList';
 import PetPigeonMap from './PetPigeonMap';
 
 import '../styles/_HomeView.scss';
 
-function HomeView (props) {
-    
-    const [ pets, setPets ] = useState([]);
+function HomeView() {
 
-    useEffect(() => {
-        props.fetchPets();
-    }, [])
+	useFirebaseConnect([
+		{ path: 'pets' }
+	]);
 
-    useEffect(() => {
-        setPets(props.pets);
-    }, [props.pets])
+	const pets = useSelector(state => state.firebase.data['pets']) || [];
 
-    return (
-        <div className="HomeView">
-            <div className="map">
-                <PetPigeonMap pets={pets} />
-            </div>
-            <PetCardList pets={pets} />
-        </div>
-    );
+	// Show message while pets are loading
+	if (!isLoaded(pets)) {
+		return <div>Loading...</div>
+	}
+
+	// Show message if there are no pets
+	if (isEmpty(pets)) {
+		return <div>pets List Is Empty</div>
+	}
+
+	return (
+		<div className="HomeView">
+			<div className="map">
+				<PetPigeonMap pets={pets} />
+			</div>
+			<PetCardList pets={pets} />
+		</div>
+	);
 }
 
-const mapStateToProps = ({ pets }) => {
-  return {
-    pets
-  };
-};
-
-export default connect(mapStateToProps, actions)(HomeView);
+export default HomeView;
