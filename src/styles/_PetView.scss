@@ -1,0 +1,123 @@
+@import "./base.scss";
+
+.PetView {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 24px 24px 24px;
+
+  .dynamicContainer {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .group.buttons {
+    justify-content: space-around !important;
+  }
+
+  .header {
+    margin: 32px 0px 24px 0px;
+
+    h1 {
+      margin: 0px;
+      font-weight: 800;
+      margin-left: 6px;
+    }
+
+    button {
+      background: #FEDADA;
+      border: none;
+      border-radius: 9px;
+      padding: 6px 18px;
+      font-family: Poppins;
+      font-weight: bold;
+      font-size: 18px;
+      color: #F12F2F;
+      text-transform: capitalize;
+    }
+  }
+
+  .name {
+    display: flex;
+    align-items: center;
+  }
+
+  .labelContent {
+    padding: 12px 0px;
+
+    p {
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      margin: 0px;
+    }
+
+    h2 {
+      margin: 0px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #9E9E9E;
+    }
+
+    .blue {
+      color: $secundary;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
+
+  .textButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 22px;
+    font-weight: 700;
+    width: 27%;
+    padding: 7px;
+    border-radius: 9px;
+    background-color: #f7f7f7;
+
+    i {
+      font-size: 30px;
+    }
+
+    p {
+      margin: 9px 0px 0px 0px;
+    }
+  }
+
+  .textButton:nth-child(1):hover {
+    color: #F12F2F;
+    background-color: #ffbcbc;
+  }
+  .textButton:nth-child(2):hover {
+    color: #792FF1;
+    background-color: #d6bdff;
+
+  }
+  .textButton:nth-child(3):hover {
+    color: #3DB860;
+    background-color: #c7ffd7;
+  }
+
+  .buttonsGroup {
+    display: flex;
+    i {
+      font-size: 42px;
+      color: #0000008a;
+      padding: 6px;
+    }
+    .active {
+      color:#252525d1;
+    }
+  }
+}

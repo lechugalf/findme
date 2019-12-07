@@ -1,5 +1,7 @@
 @import './base.scss';
 
-.HomeView {
-    
+.HomeView .map {
+    width: 100%;
+    height: calc(100vh - #{$header-height} - 24px);
 }
+

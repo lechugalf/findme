@@ -1,62 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from './actions';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import NavBar from './components/NavBar';
 import HomeView from './components/HomeView';
+import PetViewForm from './components/PetViewForm';
+import PetView from './components/PetView';
 
 import './styles/base.scss';
 
+function App() {
 
-function App(props) {
-
-  const [pets, setPets] = useState([]);
-  const [persons, setPersons] = useState([]);
-
-  //didMount
-  useEffect(() => {
-    props.fetchPets();
-    props.fetchPersons();
-  }, [])
-
-  //didUpdate
-  useEffect(() => {
-    setPets(props.pets);
-    setPersons(props.persons);
-  }, [props.pets, props.persons])
+  const pets = useSelector(state => state.pets);
 
   return (
     <div className="App">
-      <NavBar />
-      <HomeView pets={pets}/>
       <BrowserRouter>
-        <Redirect
-          from='/'
-          to='/home'
-        />
+        <NavBar />
         <Switch>
-          <Route
-            path='/home'
-            exact 
-          />
-          <Route
-            path='/add'
-          />
-          <Route
-            path='/update'
-          />
+          <Route exact path='/' component={HomeView} />
+          <Route path='/pet/:id' component={PetView} />
+          <Route path='/add' render={() => <PetViewForm action="add" />} />
+          <Route path='/edit/:id' render={
+            (props) => <PetViewForm action="edit" pet={pets[props.match.params.id]} petId={props.match.params.id}/>
+          } />
         </Switch>
       </BrowserRouter>
     </div>
   );
 }
 
-const mapStateToProps = ({ pets, persons }) => {
-  return {
-    pets,
-    persons
-  };
-};
-
-export default connect(mapStateToProps, actions)(App);
+export default App;
