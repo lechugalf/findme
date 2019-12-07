@@ -20,9 +20,8 @@ $padding: 12px;
     @include shadowRadius(1000px);
     width: $markerSize;
     height: $markerSize;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    object-fit: cover;
+    object-position: center;
     position: relative;
 
 }
