@@ -20,9 +20,8 @@ $padding: 12px;
     @include shadowRadius(1000px);
     width: $markerSize;
     height: $markerSize;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    object-fit: cover;
+    object-position: center;
     position: relative;
 
 }
@@ -30,4 +29,5 @@ $padding: 12px;
 .marker.active {
     border: 2px solid #00A3FF;
     box-shadow: 0px 0px 13px #00A3FF;
+    z-index: 1;
 }

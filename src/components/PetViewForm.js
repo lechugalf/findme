@@ -1,7 +1,7 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
-import * as actions from './../actions';
-import { connect } from 'react-redux';
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useFirebase, useFirebaseConnect, isLoaded } from 'react-redux-firebase';
 
 import swal from 'sweetalert';
 import '../styles/_PetViewForm.scss';
@@ -12,7 +12,11 @@ import PetPigeonMap from './PetPigeonMap';
 
 function PetViewForm(props) {
 
+  const firebase = useFirebase()
   const history = useHistory();
+  const { petId } = useParams()
+  //useFirebaseConnect([{ path: 'pets' }]);
+  //const pets = useSelector(state => state.firebase.data['pets']);
 
   const {
     values,
@@ -21,13 +25,33 @@ function PetViewForm(props) {
     handleSubmit,
     handleDeletePhoto,
     handleChangeLocation
-  } = dataForm(testAction, dataValidation, props.pet || {}, null);
+  } = dataForm(submit, dataValidation, { status: 'Perdido' }, petId || null, null);
 
   const photoPlaceholder = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYNKK6YMqs1WsqJtg7TJ3wlrDT9t1Tb8DILe3D72KZbpYtUBjz';
   const locationMarker = 'https://i.pinimg.com/originals/f2/57/78/f25778f30e29a96c44c4f72ef645aa63.png';
   const buttonLabel = 'Añadir';
 
-  function testAction() {
+
+  function uploadPhotos(photos, petId) {
+    let fileNames = []
+    photos.forEach((urlPhoto, index) => {
+      let fileName = `img${petId}-${index.toString()}`;
+      fetch(urlPhoto)
+        .then(r => r.blob())
+        .then(blobFile => {
+          new File([blobFile], fileName);
+          firebase.uploadFile('/photos', blobFile, `/photos`, { name: fileName })
+            .then(snap => {
+              fileNames.push(snap.downloadURL);
+              firebase.ref(`/pets/${petId}/photos/`).update(fileNames);
+            })
+            .catch(err => console.error('error uploading file', err))
+        });
+    });
+  }
+
+
+  function submit() {
 
     // clean empty photos
     let photosCleaned = [];
@@ -40,30 +64,34 @@ function PetViewForm(props) {
 
     //add pet
     if (props.action === 'add') {
-      console.log('add', values);
-      props.addPet(values, (val, err) => {
-        if (val) {
+      firebase.push('pets', values)
+        .then((val) => {
+          uploadPhotos(values.photos, val.key);
           swal("¡Nueva Mascota!", "Nueva mascota agregada a la lista de busqueda", "success")
-            .then(() => history.push('/'))
-        } else {
-          swal("Hubo problema", "Error al crear tu mascota, intentalo mas tarde", "error")
-        }
-      });
+            .then(() => history.push('/'));
+        })
+        .catch((err) => {
+          console.log(err);
+          swal("Hubo problema", "Error al crear tu mascota, intentalo mas tarde", "error");
+        });
     }
 
     if (props.action === 'edit') {
-      let id = props.petId;
+
+      let id = petId;
       let updatedPet = { [id]: values }
-      console.log('edit', updatedPet);
-      props.editPet(updatedPet, (val, err) => {
-        if (err) {
-          swal("Hubo problema", "Error al modificar tu mascota, intentalo mas tarde", "error")
-        } else {
+
+      firebase.set('pets', updatedPet)
+        .then((val) => {
+          uploadPhotos(values.photos, val.key);
           swal("¡Guardado!", "cambios guardados con éxito", "success")
-            .then(() => history.push('/'))
-        }
-      });
-    } 
+            .then(() => history.push('/'));
+        })
+        .catch((err) => {
+          console.error(err);
+          swal("Hubo problema", "Error al modificar tu mascota, intentalo mas tarde", "error");
+        });
+    }
   }
 
   return (
@@ -145,28 +173,28 @@ function PetViewForm(props) {
         {}
         <div className="photo">
           <i className="material-icons" onClick={() => handleDeletePhoto(0)}>close</i>
-          <label for="photoInput0">
+          <label htmlFor="photoInput0">
             <img src={values.photos && values.photos[0] ? values.photos[0] : photoPlaceholder} />
           </label>
           <input id="photoInput0" type="file" onChange={(e) => { e.photoId = 0; handleChange(e) }} />
         </div>
         <div className="photo">
           <i className="material-icons" onClick={() => handleDeletePhoto(1)}>close</i>
-          <label for="photoInput1">
+          <label htmlFor="photoInput1">
             <img src={values.photos && values.photos[1] ? values.photos[1] : photoPlaceholder} />
           </label>
           <input id="photoInput1" type="file" onChange={(e) => { e.photoId = 1; handleChange(e) }} />
         </div>
         <div className="photo">
           <i className="material-icons" onClick={() => handleDeletePhoto(2)}>close</i>
-          <label for="photoInput2">
+          <label htmlFor="photoInput2">
             <img src={values.photos && values.photos[2] ? values.photos[2] : photoPlaceholder} />
           </label>
           <input id="photoInput2" type="file" onChange={(e) => { e.photoId = 2; handleChange(e) }} />
         </div>
         <div className="photo">
           <i className="material-icons" onClick={() => handleDeletePhoto(3)}>close</i>
-          <label for="photoInput3">
+          <label htmlFor="photoInput3">
             <img src={values.photos && values.photos[3] ? values.photos[3] : photoPlaceholder} />
           </label>
           <input id="photoInput3" type="file" onChange={(e) => { e.photoId = 3; handleChange(e) }} />
@@ -201,13 +229,7 @@ function PetViewForm(props) {
   );
 }
 
-const mapStateToProps = ({ pets }) => {
-  return {
-    pets
-  };
-};
-
-export default connect(mapStateToProps, actions)(PetViewForm);
+export default PetViewForm;
 
 // Based on this tutorial
 // https://github.com/upmostly/custom-react-hooks-form-validation

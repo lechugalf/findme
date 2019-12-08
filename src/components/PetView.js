@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import * as actions from './../actions';
+import { useFirebaseConnect, useFirebase } from 'react-redux-firebase';
 import moment from 'moment';
 import swal from 'sweetalert';
 import '../styles/_PetView.scss';
@@ -13,9 +13,12 @@ function PetView(props) {
 
   const { id } = useParams();
   const history = useHistory();
-  const pets = useSelector(state => state.pets);
+  const firebase = useFirebase();
+  useFirebaseConnect([{ path: 'pets' }]);
+  const pets = useSelector(state => state.firebase.data['pets']) || [];
   const pet = pets[id] || [];
   const [slider, setSlider] = useState(true);
+  
 
   function handleDeletePet() {
     swal({
@@ -26,7 +29,7 @@ function PetView(props) {
     })
     .then((willDelete) => {
       if (willDelete) {
-        props.delPet(id);
+        firebase.remove(`pets/${id}`);
         history.push('/');
       }
     });
@@ -123,10 +126,4 @@ function PetView(props) {
   );
 }
 
-const mapStateToProps = ({ pets }) => {
-  return {
-    pets
-  };
-};
-
-export default connect(mapStateToProps ,actions)(PetView);
+export default PetView;

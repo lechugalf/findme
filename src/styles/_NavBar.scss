@@ -3,7 +3,7 @@
 .NavBar {
 
     height: $header-height;
-    padding: ($header-height / 5) 24px;
+    padding: ($header-height / 5) 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,7 +12,7 @@
     background: white;
 
     i {
-        font-size: 34px;
+        font-size: 28px;
     }
 
     span {
@@ -24,11 +24,12 @@
             padding: 0px;
             margin: 0px;
             font-weight: 900;
-            font-size: 26px;
+            font-size: 22px;
         }
 
         img {
-            width: 50px;
+            width: 35px;
+            padding-bottom: 8px;
         }
     }
 

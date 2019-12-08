@@ -45,16 +45,17 @@
     }
 
     section {
+        width: 100%;
         display: flex;
         flex-direction: column;
         padding-left: $padding;
         justify-content: space-around;
-        min-width: 264px;
-
+        
         header {
             display: flex;
             justify-content: space-between;
             height: $height / 2;
+            //min-width: 264px;
         }
 
         .petName {

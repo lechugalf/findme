@@ -1,17 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
-import reducers from './reducers';
+import  firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/storage'; 
+import { createStore, combineReducers, compose } from 'redux';
+import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase';
 import App from './App';
+import FirebaseConfig from './config/firebaseConfig';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const rrfConfig = {
+    userProfile: 'users',
+    presence: 'presence',
+    sessions: 'sessions',
+}
+
+firebase.initializeApp(FirebaseConfig);
+
+const rootReducer = combineReducers({
+    firebase: firebaseReducer,
+});
+
+const initialState = {}
+const store = createStore(rootReducer, initialState);
+
+const rrfProps = {
+    firebase,
+    config: rrfConfig,
+    dispatch: store.dispatch,
+}
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <ReactReduxFirebaseProvider {...rrfProps}>
+            <App/>
+        </ReactReduxFirebaseProvider>
     </Provider>,
     document.getElementById('root')
 );
