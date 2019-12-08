@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import '../styles/_NavBar.scss';
-const logo = 'corgi.jpg';
+const logo = '/corgi.jpg';
 
 function NavBar() {
 
@@ -25,10 +25,15 @@ function NavBar() {
       className="material-icons"
       onClick={() => history.push('/')}
     > close </i>;
-    leftButton = <i
+    leftButton = <i className="material-icons">menu</i>;
+  }
+
+  if (history.location.pathname.includes('/edit')) {
+    rightButton = <i
       className="material-icons"
       onClick={() => history.push('/')}
-    > arrow_back</i>;
+    > close </i>;
+    leftButton = <i className="material-icons">menu</i>;
   }
 
   if (history.location.pathname.includes('/pet/')) {

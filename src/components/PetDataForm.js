@@ -6,7 +6,7 @@ function PetDataForm(action, validate, initValues, petId, args) {
     
     useFirebaseConnect([{ path: 'pets' }]);
     const pets = useSelector(state => state.firebase.data['pets']);
-    initValues = pets ? petId ? pets[petId] :  {} : {};
+    initValues = pets ? petId ? pets[petId] :  initValues : initValues;
 
     const [values, setValues] = useState(initValues || {});
     const [errors, setErrors] = useState({});

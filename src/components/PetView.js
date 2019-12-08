@@ -29,7 +29,7 @@ function PetView(props) {
     })
     .then((willDelete) => {
       if (willDelete) {
-        firebase.remove('pets/', id);
+        firebase.remove(`pets/${id}`);
         history.push('/');
       }
     });
