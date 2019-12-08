@@ -5,6 +5,7 @@ import PetCardList from './PetCardList';
 import PetPigeonMap from './PetPigeonMap';
 
 import '../styles/_HomeView.scss';
+import Loader from './Loader';
 
 function HomeView() {
 
@@ -16,13 +17,11 @@ function HomeView() {
 
 	// Show message while pets are loading
 	if (!isLoaded(pets)) {
-		return <div>Loading...</div>
+		return <Loader/>;
 	}
 
 	// Show message if there are no pets
-	if (isEmpty(pets)) {
-		return <div>pets List Is Empty</div>
-	}
+
 
 	return (
 		<div className="HomeView">
